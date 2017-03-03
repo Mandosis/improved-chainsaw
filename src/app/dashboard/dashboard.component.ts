@@ -6,7 +6,9 @@ import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
 import { ItemsService, UsersService, ProductsService, AlertsService } from '../../services';
 
-import { multi } from './data';
+import { multi, single } from './data';
+
+import { ReemoHealthService } from '../reemo-health.service';
 
 @Component({
   selector: 'qs-dashboard',
@@ -38,7 +40,7 @@ export class DashboardComponent implements AfterViewInit {
   yAxisLabel: string = 'Sales';
 
   colorScheme: any = {
-    domain: ['#1565C0', '#2196F3', '#81D4FA', '#FF9800', '#EF6C00'],
+    domain: ['#2196F3'],
   };
 
   // line, area
@@ -49,7 +51,30 @@ export class DashboardComponent implements AfterViewInit {
               private _usersService: UsersService,
               private _alertsService: AlertsService,
               private _productsService: ProductsService,
-              private _loadingService: TdLoadingService) {
+              private _loadingService: TdLoadingService,
+              private _reemoHealthService: ReemoHealthService) {
+                this.single = single;
+
+
+
+                this._reemoHealthService.fetch().subscribe((data) => {
+                  let stepCountChart = [];
+
+                  for (let day of data) {
+                    let stepCount = day.summary_data.stepcount;
+
+                    if (stepCount) {
+                      stepCountChart.push({
+                        'name': stepCount.date,
+                        'value': stepCount.total_stepcount,
+                      });
+                    }
+                  }
+
+                  this.single = stepCountChart;
+                })
+
+
                 // Chart
                 this.multi = multi.map((group: any) => {
                   group.series = group.series.map((dataItem: any) => {
