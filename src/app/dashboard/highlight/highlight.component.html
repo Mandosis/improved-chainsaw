@@ -1,0 +1,22 @@
+<div flex="100" layout="column">
+  <md-card class="md-card-colored" flex>
+    <md-card-content class="text-center">
+      <div class="md-headline">
+        {{ value | digits }}
+
+        <md-icon class="tc-green-500 text-sm">arrow_upward</md-icon>
+      </div>
+      <md-icon class="icon tc-indigo-700">{{icon}}</md-icon>
+
+      <div layout="column">
+        <div class="md-subhead">
+          {{title}}
+        </div>
+
+        <div class="md-caption tc-grey-600">
+          {{description}}
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>

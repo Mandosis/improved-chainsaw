@@ -18,30 +18,32 @@ import { ReemoHealthService } from '../reemo-health.service';
 })
 export class DashboardComponent implements AfterViewInit {
 
-  items: Object[];
-  users: Object[];
-  products: Object[];
-  alerts: Object[];
+  stepCount: any[];
 
-  // Chart
-  single: any[];
-  multi: any[];
+  // items: Object[];
+  // users: Object[];
+  // products: Object[];
+  // alerts: Object[];
 
-  view: any[] = [700, 400];
+  // // Chart
+  // single: any[];
+  // multi: any[];
 
-  // options
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  gradient: boolean = false;
-  showLegend: boolean = false;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = '';
-  showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Sales';
+  // view: any[] = [700, 400];
 
-  colorScheme: any = {
-    domain: ['#2196F3'],
-  };
+  // // options
+  // showXAxis: boolean = true;
+  // showYAxis: boolean = true;
+  // gradient: boolean = false;
+  // showLegend: boolean = false;
+  // showXAxisLabel: boolean = true;
+  // xAxisLabel: string = '';
+  // showYAxisLabel: boolean = true;
+  // yAxisLabel: string = 'Steps';
+
+  // colorScheme: any = {
+  //   domain: ['#2196F3'],
+  // };
 
   // line, area
   autoScale: boolean = true;
@@ -53,89 +55,92 @@ export class DashboardComponent implements AfterViewInit {
               private _productsService: ProductsService,
               private _loadingService: TdLoadingService,
               private _reemoHealthService: ReemoHealthService) {
-                this.single = single;
+                // this.single = single;
 
 
 
                 this._reemoHealthService.fetch().subscribe((data) => {
-                  let stepCountChart = [];
+                  // let stepCountChart = [];
+                  this.stepCount = [];
 
                   for (let day of data) {
-                    let stepCount = day.summary_data.stepcount;
+                    // let stepCount = day.summary_data.stepcount;
 
-                    if (stepCount) {
-                      stepCountChart.push({
-                        'name': stepCount.date,
-                        'value': stepCount.total_stepcount,
-                      });
-                    }
+                    // if (stepCount) {
+                      // stepCountChart.push({
+                      //   'name': stepCount.date,
+                      //   'value': stepCount.total_stepcount,
+                      // });
+
+                      this.stepCount.push(day.summary_data.stepcount);
+                    // }
                   }
 
-                  this.single = stepCountChart;
+                  // this.single = stepCountChart.slice(stepCountChart.length - 7, stepCountChart.length);
                 })
 
 
-                // Chart
-                this.multi = multi.map((group: any) => {
-                  group.series = group.series.map((dataItem: any) => {
-                    dataItem.name = new Date(dataItem.name);
-                    return dataItem;
-                  });
-                  return group;
-                });
+                // // Chart
+                // this.multi = multi.map((group: any) => {
+                //   group.series = group.series.map((dataItem: any) => {
+                //     dataItem.name = new Date(dataItem.name);
+                //     return dataItem;
+                //   });
+                //   return group;
+                // });
   }
 
   ngAfterViewInit(): void {
-    this._titleService.setTitle( 'Covalent Quickstart' );
-    this._loadingService.register('items.load');
-    this._itemsService.query().subscribe((items: Object[]) => {
-      this.items = items;
-      setTimeout(() => {
-        this._loadingService.resolve('items.load');
-      }, 750);
-    }, (error: Error) => {
-      this._itemsService.staticQuery().subscribe((items: Object[]) => {
-        this.items = items;
-        setTimeout(() => {
-          this._loadingService.resolve('items.load');
-        }, 750);
-      });
-    });
-    this._loadingService.register('alerts.load');
-    this._alertsService.query().subscribe((alerts: Object[]) => {
-      this.alerts = alerts;
-      setTimeout(() => {
-        this._loadingService.resolve('alerts.load');
-      }, 750);
-    });
-    this._loadingService.register('products.load');
-    this._productsService.query().subscribe((products: Object[]) => {
-      this.products = products;
-      setTimeout(() => {
-        this._loadingService.resolve('products.load');
-      }, 750);
-    });
-    this._loadingService.register('favorites.load');
-    this._productsService.query().subscribe((products: Object[]) => {
-      this.products = products;
-      setTimeout(() => {
-        this._loadingService.resolve('favorites.load');
-      }, 750);
-    });
-    this._loadingService.register('users.load');
-    this._usersService.query().subscribe((users: Object[]) => {
-      this.users = users;
-      setTimeout(() => {
-        this._loadingService.resolve('users.load');
-      }, 750);
-    }, (error: Error) => {
-      this._usersService.staticQuery().subscribe((users: Object[]) => {
-        this.users = users;
-        setTimeout(() => {
-          this._loadingService.resolve('users.load');
-        }, 750);
-      });
-    });
+    // this._titleService.setTitle( 'Covalent Quickstart' );
+    // this._loadingService.register('items.load');
+    // this._itemsService.query().subscribe((items: Object[]) => {
+    //   this.items = items;
+    //   setTimeout(() => {
+    //     this._loadingService.resolve('items.load');
+    //   }, 750);
+    // }, (error: Error) => {
+    //   this._itemsService.staticQuery().subscribe((items: Object[]) => {
+    //     this.items = items;
+    //     setTimeout(() => {
+    //       this._loadingService.resolve('items.load');
+    //     }, 750);
+    //   });
+    // });
+    // this._loadingService.register('alerts.load');
+    // this._alertsService.query().subscribe((alerts: Object[]) => {
+    //   this.alerts = alerts;
+    //   setTimeout(() => {
+    //     this._loadingService.resolve('alerts.load');
+    //   }, 750);
+    // });
+    // this._loadingService.register('products.load');
+    // this._productsService.query().subscribe((products: Object[]) => {
+    //   this.products = products;
+    //   setTimeout(() => {
+    //     this._loadingService.resolve('products.load');
+    //   }, 750);
+    // });
+    // this._loadingService.register('favorites.load');
+    // this._productsService.query().subscribe((products: Object[]) => {
+    //   this.products = products;
+    //   setTimeout(() => {
+    //     this._loadingService.resolve('favorites.load');
+    //   }, 750);
+    // });
+    // this._loadingService.register('users.load');
+    // this._usersService.query().subscribe((users: Object[]) => {
+    //   this.users = users;
+    //   setTimeout(() => {
+    //     this._loadingService.resolve('users.load');
+    //   }, 750);
+    // }, (error: Error) => {
+    //   this._usersService.staticQuery().subscribe((users: Object[]) => {
+    //     this.users = users;
+    //     setTimeout(() => {
+    //       this._loadingService.resolve('users.load');
+    //     }, 750);
+    //   });
+    // });
   }
 
   // ngx transform using covalent digits pipe

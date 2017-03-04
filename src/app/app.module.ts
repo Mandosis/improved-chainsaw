@@ -21,6 +21,8 @@ import { ChartComponent } from '../components/chart/chart.component';
 import { RequestInterceptor } from '../config/interceptors/request.interceptor';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { StepcountComponent } from './dashboard/stepcount/stepcount.component';
+import { HighlightComponent } from './dashboard/highlight/highlight.component';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -32,6 +34,8 @@ const httpInterceptorProviders: Type<any>[] = [
     MainComponent,
     DashboardComponent,
     ChartComponent,
+    StepcountComponent,
+    HighlightComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     BrowserModule,
