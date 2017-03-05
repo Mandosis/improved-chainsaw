@@ -1,0 +1,99 @@
+<section class="highlights">
+
+  <!-- Step Count -->
+  <qs-highlight
+    *ngIf="lastEntry !== undefined && lastEntry.total_stepcount !== undefined"
+    [title]="'Steps'"
+    [description]="lastEntry.date"
+    [value]="lastEntry.total_stepcount"
+    [compare]="lastEntry.total_stepcount > lastEntryComparison.total_stepcount"
+    [icon]="'directions_walk'"
+    [color]="'tc-blue-800'">
+  </qs-highlight>
+
+  <qs-highlight
+    *ngIf="lastEntry !== undefined && lastEntry.total_distance !== undefined"
+    [title]="'Distance'"
+    [description]="lastEntry.date"
+    [value]="lastEntry.total_distance"
+    [compare]="lastEntry.total_distance > lastEntryComparison.total_distance"
+    [icon]="'map'"
+    [color]="'tc-teal-500'">
+  </qs-highlight>
+
+  <qs-highlight
+    *ngIf="lastEntry !== undefined && lastEntry.total_calories !== undefined"
+    [title]="'Calories Burned'"
+    [description]="lastEntry.date"
+    [value]="lastEntry.total_calories"
+    [compare]="lastEntry.total_calories > lastEntryComparison.total_calories"
+    [icon]="'whatshot'"
+    [color]="'tc-orange-900'">
+  </qs-highlight>
+
+
+  <!-- Heart -->
+  <qs-highlight
+    *ngIf="lastEntry !== undefined && lastEntry.average_heartrate !== undefined"
+    [title]="'Average Heart Rate'"
+    [description]="lastEntry.date"
+    [value]="lastEntry.average_heartrate"
+    [compare]="lastEntry.average_heartrate > lastEntryComparison.average_heartrate"
+    [icon]="'favorite'"
+    [color]="'tc-red-600'">
+  </qs-highlight>
+
+  <qs-highlight
+    *ngIf="lastEntry !== undefined && lastEntry.maximum_heartrate !== undefined"
+    [title]="'Maximum Heart Rate'"
+    [description]="lastEntry.date"
+    [value]="lastEntry.maximum_heartrate"
+    [compare]="lastEntry.maximum_heartrate > lastEntryComparison.maximum_heartrate"
+    [icon]="'arrow_drop_up'">
+  </qs-highlight>
+
+  <qs-highlight
+    *ngIf="lastEntry !== undefined && lastEntry.minimum_heartrate !== undefined"
+    [title]="'Minimun Heart Rate'"
+    [description]="lastEntry.date"
+    [value]="lastEntry.minimum_heartrate"
+    [compare]="lastEntry.minimum_heartrate > lastEntryComparison.minimum_heartrate"
+    [icon]="'arrow_drop_down'">
+  </qs-highlight>
+
+  <!-- Sleep -->
+  <qs-highlight
+    *ngIf="lastEntry !== undefined && lastEntry.sleep_time_in_seconds !== undefined"
+    [title]="'Sleep Time'"
+    [description]="lastEntry.awakened_date"
+    [value]="lastEntry.sleep_time_in_seconds"
+    [compare]="lastEntry.sleep_time_in_seconds > lastEntryComparison.sleep_time_in_seconds "
+    [icon]="'brightness_3'">
+  </qs-highlight>
+
+
+</section>
+
+<section>
+  <!-- Step Chart -->
+  <md-card>
+    <md-card-title>{{chartTitle}}</md-card-title>
+    <md-card-subtitle>Last 7 recorded days</md-card-subtitle>
+    <md-divider></md-divider>
+    <div class="chart-height push-top push-right-sm" style="min-height: 300px">
+          <ngx-charts-bar-vertical
+            [scheme]="colorScheme"
+            [results]="chart"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [yAxisTickFormatting]="axisDigits">
+          </ngx-charts-bar-vertical>
+    </div>
+  </md-card>
+</section>

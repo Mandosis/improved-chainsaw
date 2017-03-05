@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -13,13 +14,13 @@ import {
 import { ReemoHealthService } from '../reemo-health.service';
 
 @Component({
-  selector: 'qs-data-table',
-  templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.scss']
+  selector: 'qs-details',
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss']
 })
-export class DataTableComponent implements OnInit {
+export class DetailsComponent implements OnInit {
   type: string;
-
+  unfilteredData: any[] = [];
   data: any[] = [];
   columns: ITdDataTableColumn[] = this.columns = [
     { name: 'date', label: 'Date' },
@@ -54,11 +55,14 @@ export class DataTableComponent implements OnInit {
     this.reemoData.fetch().subscribe((data) => {
       this.data = [];
       this.columns = [];
+      this.unfilteredData = [];
 
       for (let day of data) {
         day = day.summary_data;
 
         if (this.type === 'steps' && day.stepcount) {
+          this.unfilteredData.push(day.stepcount);
+
           this.data.push(day.stepcount);
           this.columns = [
             { name: 'date', label: 'Date' },
@@ -67,16 +71,25 @@ export class DataTableComponent implements OnInit {
             { name: 'total_calories', label: 'Calories' },
           ];
         } else if (this.type === 'heart' && day.heartrate) {
+          this.unfilteredData.push(day.heartrate);
+
           this.data.push(day.heartrate);
           this.columns = [
             { name: 'date', label: 'Date' },
-            { name: 'total_stepcount', label: 'Step Count' },
-            { name: 'total_distance', label: 'Distance' },
-            { name: 'total_calories', label: 'Calories' },
+            { name: 'average_heartrate', label: 'Average Heart Rate' },
+            { name: 'maximum_heartrate', label: 'Maximum Heart Rate' },
+            { name: 'minimum_heartrate', label: 'Minimum Heart Rate' },
           ];
 
         } else if (this.type === 'sleep' && day.sleep) {
+          this.unfilteredData.push(day.sleep);
+
           this.data.push(day.sleep);
+          this.columns = [
+            { name: 'awakened_date', label: 'Awakened Date' },
+            { name: 'sleep_time_in_seconds', label: 'Sleep Time (seconds)' },
+          ];
+
         }
 
       }

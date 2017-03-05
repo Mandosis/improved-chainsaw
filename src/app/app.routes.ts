@@ -2,13 +2,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DataTableComponent } from './data-table/data-table.component';
+import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'login',
-  //   component: LoginComponent
-  // },
   {
     path: '',
     component: MainComponent,
@@ -18,7 +14,7 @@ const routes: Routes = [
       children: [
         {
           path: 'details/:type',
-          component: DataTableComponent,
+          component: DetailsComponent,
         },
       ],
     },

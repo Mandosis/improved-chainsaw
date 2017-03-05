@@ -2,6 +2,8 @@
   <md-icon>arrow_back</md-icon>
 </button>
 
+<qs-overview [data]="unfilteredData"></qs-overview>
+
 <md-card>
   <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
     <span *ngIf="!searchBox.searchVisible" class="push-left-sm">

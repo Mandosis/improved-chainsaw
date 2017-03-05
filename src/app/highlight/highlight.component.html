@@ -4,9 +4,11 @@
       <div class="md-headline">
         {{ value | digits }}
 
-        <md-icon class="tc-green-500 text-sm">arrow_upward</md-icon>
+        <md-icon *ngIf="compare" class="tc-green-500 text-sm">arrow_upward</md-icon>
+
+        <md-icon *ngIf="!compare" class="tc-red-500 text-sm">arrow_downward</md-icon>
       </div>
-      <md-icon class="icon tc-indigo-700">{{icon}}</md-icon>
+      <md-icon class="icon" [ngClass]="color || 'tc-indigo-700'">{{icon}}</md-icon>
 
       <div layout="column">
         <div class="md-subhead">
