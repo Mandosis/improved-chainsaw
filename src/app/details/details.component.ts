@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 
 
 import {
@@ -50,6 +50,13 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.router.events
+      .filter(event => event instanceof NavigationEnd)
+      .forEach(event => this.fetchData());
+  }
+
+  fetchData() {
+    this.unfilteredData = [];
     this.type = this.route.snapshot.params['type'].toLowerCase();
 
     this.reemoData.fetch().subscribe((data) => {
@@ -62,7 +69,7 @@ export class DetailsComponent implements OnInit {
 
         if (this.type === 'steps' && day.stepcount) {
           this.unfilteredData.push(day.stepcount);
-
+          this.sortBy = 'date';
           this.data.push(day.stepcount);
           this.columns = [
             { name: 'date', label: 'Date' },
@@ -72,7 +79,7 @@ export class DetailsComponent implements OnInit {
           ];
         } else if (this.type === 'heart' && day.heartrate) {
           this.unfilteredData.push(day.heartrate);
-
+          this.sortBy = 'date';
           this.data.push(day.heartrate);
           this.columns = [
             { name: 'date', label: 'Date' },
@@ -83,7 +90,7 @@ export class DetailsComponent implements OnInit {
 
         } else if (this.type === 'sleep' && day.sleep) {
           this.unfilteredData.push(day.sleep);
-
+          this.sortBy = 'awakened_date';
           this.data.push(day.sleep);
           this.columns = [
             { name: 'awakened_date', label: 'Awakened Date' },
@@ -96,6 +103,7 @@ export class DetailsComponent implements OnInit {
 
       this.filter();
     });
+
   }
 
   sort(sortEvent: ITdDataTableSortChangeEvent): void {

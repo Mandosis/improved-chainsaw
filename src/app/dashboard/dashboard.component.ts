@@ -12,6 +12,6 @@ export class DashboardComponent implements AfterViewInit {
   constructor(private _titleService: Title) {}
 
   ngAfterViewInit(): void {
-    this._titleService.setTitle( 'Covalent Quickstart' );
+    this._titleService.setTitle( 'Tech Challenge' );
   }
 }

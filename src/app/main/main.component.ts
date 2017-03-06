@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ReemoHealthService } from '../reemo-health.service';
 
 @Component({
   selector: 'qs-main',
@@ -18,26 +16,22 @@ export class MainComponent {
     },
     {
       title: 'Step Count',
-      route: 'details/steps',
+      route: '/details/steps',
       icon: 'directions_walk',
     },
     {
       title: 'Heart Rate',
-      route: 'details/heart',
+      route: '/details/heart',
       icon: 'favorite',
     },
     {
       title: 'Sleep',
-      route: 'details/sleep',
+      route: '/details/sleep',
       icon: 'brightness_3',
     },
   ];
 
-  constructor(private _router: Router, reemoHealthService: ReemoHealthService) {
-    reemoHealthService.fetch().subscribe((data) => {
-      this.data = data;
-      console.log('Stuff', data);
-    });
+  constructor() {
   }
 
   // logout(): void {
