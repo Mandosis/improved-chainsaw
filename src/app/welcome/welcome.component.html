@@ -1,0 +1,45 @@
+<h1>Welcome</h1>
+<p>Choose a section below to view results</p>
+<section class="option-container">
+  <div flex="100" layout="column" class="option">
+    <md-card class="md-card-colored link" routerLink="details/steps" flex>
+      <md-card-content class="text-center">
+        <div class="md-headline">Step Count</div>
+        <div layout="column">
+          <div class="md-caption tc-grey-600">
+            Step Count, Distance and Calories
+          </div>
+        </div>
+        <md-icon class="icon" [ngClass]="color || 'tc-blue-800'">directions_walk</md-icon>
+      </md-card-content>
+    </md-card>
+  </div>
+
+  <div flex="100" layout="column" class="option">
+    <md-card class="md-card-colored link" routerLink="details/heart" flex>
+      <md-card-content class="text-center">
+        <div class="md-headline">Heart Rate</div>
+        <div layout="column">
+          <div class="md-caption tc-grey-600">
+            Average, Maximum and Minimum Heart Rate
+          </div>
+        </div>
+        <md-icon class="icon" [ngClass]="color || 'tc-red-400'">favorite</md-icon>
+      </md-card-content>
+    </md-card>
+  </div>
+
+  <div flex="100" layout="column" class="option">
+    <md-card class="md-card-colored link"  routerLink="details/sleep" flex>
+      <md-card-content class="text-center">
+        <div class="md-headline">Sleep</div>
+        <div layout="column">
+          <div class="md-caption tc-grey-600">
+            Sleep Time
+          </div>
+        </div>
+        <md-icon class="icon" [ngClass]="color || 'tc-teal-800'">brightness_3</md-icon>
+      </md-card-content>
+    </md-card>
+  </div>
+</section>

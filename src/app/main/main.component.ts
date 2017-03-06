@@ -12,27 +12,25 @@ export class MainComponent {
   data: any;
 
   routes: Object[] = [{
-      title: 'Dashboard',
+      title: 'Home',
       route: '/',
-      icon: 'dashboard',
+      icon: 'home',
     },
-    // {
-    //   title: 'Product Dashboard',
-    //   route: '/product',
-    //   icon: 'view_quilt',
-    // }, {
-    //   title: 'Product Logs',
-    //   route: '/logs',
-    //   icon: 'receipt',
-    // }, {
-    //   title: 'Manage Users',
-    //   route: '/users',
-    //   icon: 'people',
-    // }, {
-    //   title: 'Covalent Templates',
-    //   route: '/templates',
-    //   icon: 'view_module',
-    // },
+    {
+      title: 'Step Count',
+      route: 'details/steps',
+      icon: 'directions_walk',
+    },
+    {
+      title: 'Heart Rate',
+      route: 'details/heart',
+      icon: 'favorite',
+    },
+    {
+      title: 'Sleep',
+      route: 'details/sleep',
+      icon: 'brightness_3',
+    },
   ];
 
   constructor(private _router: Router, reemoHealthService: ReemoHealthService) {

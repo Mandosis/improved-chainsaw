@@ -18,6 +18,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { OverviewComponent } from './overview/overview.component';
 import { HighlightComponent } from './highlight/highlight.component';
 import { DetailsComponent } from './details/details.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DetailsComponent } from './details/details.component';
     OverviewComponent,
     HighlightComponent,
     DetailsComponent,
+    WelcomeComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     BrowserModule,
