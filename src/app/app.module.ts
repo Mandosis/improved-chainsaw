@@ -19,6 +19,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { HighlightComponent } from './highlight/highlight.component';
 import { DetailsComponent } from './details/details.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     HighlightComponent,
     DetailsComponent,
     WelcomeComponent,
+    NotFoundComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     BrowserModule,

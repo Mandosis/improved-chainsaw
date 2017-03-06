@@ -4,6 +4,7 @@ import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DetailsComponent } from './details/details.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
       ],
     },
   ]},
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
+
 ];
 
 export const appRoutingProviders: any[] = [
